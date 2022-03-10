@@ -1,7 +1,8 @@
-import VueX from 'vuex'
+import VueX, { createLogger } from 'vuex'
 import Vue from 'vue'
+import journals from './modules/journals'
 
-
+const debug = process.env.NODE_ENV !== 'production'
 // Loading VueX
 Vue.use(VueX)
 
@@ -12,5 +13,8 @@ Vue.use(VueX)
 // add journals state to the store
 
 export default () => new VueX.Store({
-
+  modules: {
+    journals
+  },
+  plugins: debug ? [createLogger()] : []
 })
