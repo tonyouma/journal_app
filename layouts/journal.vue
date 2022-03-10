@@ -1,8 +1,10 @@
 <template>
-  <div class="mx-auto md:w-1/2 px-4 bg-gray-50 mt-12">
+  <div class="mx-auto md:w-1/2 px-4 mt-12">
     <div class="text-right">
       <!-- <Button :buttonText="Add" @click="addPost" /> -->
-      <ButtonComponent :onClick="to" :buttonText="'New Journal'" />
+      <div v-if="this.$route.name !== 'new'">
+        <ButtonComponent :onClick="to" :buttonText="'New Journal'" />
+      </div>
     </div>
     <div class="flex items-start">
       <ul class="nav-wrapper">
@@ -14,7 +16,7 @@
         >
           <nuxt-link
             :to="item.to"
-            exact-active-class="active"
+            exact-active-class="active-navlink bg-blue-50"
             class="item-link"
             >{{ item.title }}</nuxt-link
           >
@@ -60,6 +62,11 @@ export default {
   @apply flex flex-col flex-wrap list-none border-r pl-0 mr-4;
 }
 .item-link {
-  @apply block font-medium leading-tight capitalize border-b-2 border-transparent px-2 md:px-6 py-1 my-2 hover:border-transparent hover:bg-gray-100 focus:border-transparent;
+  @apply block font-medium leading-tight capitalize border-b-2 border-transparent px-2 md:px-6 py-1 my-2  hover:bg-gray-100;
+}
+
+.active-navlink {
+  border-right: 2px solid #1e3a8a;
+  color: #1e3a8a;
 }
 </style>

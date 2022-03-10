@@ -1,18 +1,25 @@
 <template>
   <div>
-    <Card
-      v-for="journal of journals"
-      :key="journal.id"
-      :title="journal.title"
-      :description="journal.description"
-      :id="journal.id"
-      :createdAt="journal.createdAt"
-    />
+    <div v-if="!journals.length" class="content-wrapper">
+      <p class="">No Journals Available</p>
+      <nuxt-link :to="'/new'" class="link-text">Create New Journal</nuxt-link>
+    </div>
+    <div v-else>
+      <Card
+        v-for="journal of journals"
+        :key="journal.id"
+        :title="journal.title"
+        :description="journal.description"
+        :id="journal.id"
+        :createdAt="journal.createdAt"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import Card from '~/components/Card/Card.vue'
+import { mapState } from 'vuex'
 
 export default {
   layout(context) {
@@ -21,31 +28,13 @@ export default {
   components: {
     Card,
   },
-  data() {
-    return {
-      journals: [
-        {
-          id: 1,
-          title: 'title1',
-          description:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat ipsum sunt tempora fuga quo, molestiae iste Eligendi veritatis earum porro.',
-          createdAt: '01/02/2021',
-        },
-        {
-          id: 2,
-          title: 'title',
-          description: 'description',
-          createdAt: '01/02/2021',
-        },
-        {
-          id: 3,
-          title: 'title',
-          description: 'description',
-          createdAt: '01/02/2021',
-        },
-      ],
-    }
+
+  mounted() {
+    // journals: this.$store.state.journals
   },
+  computed: mapState({
+    journals: (state) => state.journals,
+  }),
   async created() {
     try {
       //
@@ -60,3 +49,12 @@ export default {
   },
 }
 </script>
+
+<style lang="postcss">
+.link-text {
+  @apply my-5 text-blue-600 underline;
+}
+.content-wrapper {
+  @apply flex justify-center items-center flex-col md:my-10;
+}
+</style>
