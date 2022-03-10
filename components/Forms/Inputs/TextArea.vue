@@ -1,7 +1,12 @@
 <template>
   <div class="my-6">
     <label class="block text-sm leading-none">Journal Entry</label>
-    <textarea type="text" class="textAreaStyles"></textarea>
+    <textarea
+      type="text"
+      class="textAreaStyles"
+      v-model="text"
+      @keyup.enter="publishContent"
+    ></textarea>
   </div>
 </template>
 

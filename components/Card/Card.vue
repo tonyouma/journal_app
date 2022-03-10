@@ -1,5 +1,5 @@
 <template>
-  <div class="mb-3 bg-white rounded p-4">
+  <div class="mb-3 bg-white rounded p-4 bg-gray-50">
     <h1 class="text-2xl capitalize">{{ title }}</h1>
     <p class="py-2">{{ description }}</p>
     <div class="flex justify-between items-center">
