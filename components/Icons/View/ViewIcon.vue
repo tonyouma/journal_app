@@ -1,5 +1,5 @@
 <template>
-  <eye-icon size="1.1x" class="mx-1 text-blue-400"></eye-icon>
+  <eye-icon size="1.1x" class="text-blue-400"></eye-icon>
 </template>
 
 <script>

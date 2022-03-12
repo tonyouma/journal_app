@@ -1,19 +1,25 @@
 <template>
-  <div>
-    <button @click="onClick" class="buttonStyle">
-      {{ buttonText }}
-    </button>
-  </div>
+  <component
+    :is="to ? 'nuxt-link' : href ? 'a' : 'button'"
+    :to="to"
+    :href="href"
+    @click="$emit('click')"
+  >
+    <slot></slot>
+  </component>
 </template>
 
 <script>
 export default {
-  props: ['buttonText', 'onClick'],
+  props: {
+    to: {
+      type: [String, Object],
+      default: null,
+    },
+    href: {
+      type: String,
+      default: null,
+    },
+  },
 }
 </script>
-
-<style lang="postcss">
-.buttonStyle {
-  @apply px-8 py-2 bg-blue-100 text-blue-900 font-medium rounded my-5;
-}
-</style>
