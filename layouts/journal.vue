@@ -3,7 +3,7 @@
     <div class="border-b border-gray-100">
       <ul class="nav-wrapper" id="tabs-tab" role="tablist">
         <li
-          class="md:mr-8 mr-6 grow"
+          class="md:mr-8 mr-6"
           role="presentation"
           v-for="(item, key) of items"
           :key="key"
@@ -101,7 +101,7 @@ export default {
   color: #1e3a8a;
 }
 .button-style {
-  @apply bg-blue-50 text-blue-900 font-medium rounded my-5;
+  @apply bg-blue-50 text-blue-900 font-medium rounded my-5 py-1 px-3;
 }
 .search {
   @apply bg-blue-50 ml-auto self-center p-2 rounded text-blue-600;
