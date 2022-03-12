@@ -1,10 +1,34 @@
 import journals from "~/utils/api/journals"
 
-const state = () => ({
+const initialState = () => ({
   journals: [
+    {
+      id: 1,
+      title: 'title1',
+      description:
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat ipsum sunt tempora fuga quo, molestiae iste Eligendi veritatis earum porro.',
+      createdAt: '01/02/2021',
+    },
+    {
+      id: 2,
+      title: 'title',
+      description: 'description',
+      createdAt: '01/02/2021',
+    },
+    {
+      id: 3,
+      title: 'title',
+      description: 'description',
+      createdAt: '01/02/2021',
+    },
   ],
+  loading: false,
   journal: {},
   selectedJournal: {},
+})
+
+const state = () => ({
+  ...initialState(),
 })
 
 const actions = {
