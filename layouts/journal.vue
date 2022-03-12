@@ -32,7 +32,10 @@
         </div>
         <ButtonComponent @click="to" class="button-style">
           <EditIcon slot="prepend" />
-          <span slot="default">New Journal</span>
+          <span slot="default" v-if="this.$route.name !== 'drafts'"
+            >New Journal</span
+          >
+          <span slot="default" v-else>New Draft</span>
         </ButtonComponent>
       </div>
     </div>
