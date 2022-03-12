@@ -14,3 +14,6 @@ export default {
   components: { NewJournalForm },
 }
 </script>
+
+
+</style>

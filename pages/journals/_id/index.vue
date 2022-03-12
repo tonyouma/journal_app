@@ -1,11 +1,14 @@
 <template>
   <div>
     <h1>Title1</h1>
-    <button @click="to" class="buttonLink">Previous Page</button>
+    <ButtonComponent @click="to" class="button-link"
+      >Previous Page</ButtonComponent
+    >
   </div>
 </template>
 
 <script>
+import ButtonComponent from '~/components/ButtonComponent/ButtonComponent.vue'
 export default {
   //
   methods: {
@@ -17,11 +20,12 @@ export default {
   layout(context) {
     return 'journal'
   },
+  components: { ButtonComponent },
 }
 </script>
 
 <style lang="postcss" scoped>
-.buttonLink {
+.button-link {
   @apply py-2 text-blue-900 font-medium text-right;
 }
 </style>

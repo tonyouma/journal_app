@@ -4,8 +4,11 @@
     :to="to"
     :href="href"
     @click="$emit('click')"
+    class="flex items-center gap-x-3"
   >
-    <slot></slot>
+    <slot name="prepend"></slot>
+    <slot name="default"></slot>
+    <slot name="append"></slot>
   </component>
 </template>
 
