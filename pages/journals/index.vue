@@ -14,7 +14,7 @@
 
 <script>
 import JournalCard from '~/components/Card/JournalCard.vue'
-import { mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import ButtonComponent from '~/components/ButtonComponent/ButtonComponent.vue'
 
 export default {
@@ -27,19 +27,13 @@ export default {
   },
 
   computed: {
-    ...mapState('journals', ['journals']),
+    ...mapGetters(['journals', 'loading']),
   },
-  // async created() {
-  //   try {
-  //     this.$store.dispatch('FETCH_JOURNAS')
-  //   } catch (e) {
-  //     console.error(e)
-  //   }
-  // },
   methods: {
-    addPost() {
-      //
-    },
+    ...mapActions(['fetchJournals']),
+  },
+  created() {
+    this.fetchJournals()
   },
 }
 </script>
