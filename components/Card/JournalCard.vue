@@ -6,12 +6,13 @@
       <div class="bottom-content">
         <p class="timestamp">{{ journal.createdAt }}</p>
         <div class="flex items-center gap-x-4">
-          <ShareIcon />
+          <ButtonComponent @click="handleShare">
+            <ShareIcon />
+          </ButtonComponent>
           <!-- for dynamic routing to a single journal post -->
-          <ButtonComponent to="`journals/${journal.id}`">
+          <ButtonComponent :to="`journals/${journal.id}`" class="btn-style">
             <ViewIcon />
           </ButtonComponent>
-          <!-- <nuxt-link :to="`journals/${journal.id}`"><ViewIcon /></nuxt-link> -->
         </div>
       </div>
     </div>
@@ -27,12 +28,18 @@ export default {
     journals: Array,
   },
   components: { ShareIcon, ViewIcon, ButtonComponent },
+  methods: {
+    handleShare() {
+      //
+    },
+  },
 }
 </script>
 
 <style lang="postcss">
 .card-styles {
   @apply mb-3 bg-gray-50 rounded-md p-4;
+  box-shadow: 'rgba(0, 0, 0, 0.15) 0px 0px 1px';
 }
 .title {
   @apply text-lg capitalize font-medium;
@@ -42,5 +49,8 @@ export default {
 }
 .timestamp {
   @apply text-sm text-gray-400;
+}
+.btn-style {
+  @apply cursor-pointer;
 }
 </style>

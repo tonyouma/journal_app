@@ -1,19 +1,15 @@
 <template>
   <div class="mx-auto md:w-1/2 px-4 mt-12">
     <div class="border-b border-gray-100">
-      <ul class="nav-wrapper" id="tabs-tab" role="tablist">
-        <li
-          class="md:mr-8 mr-6"
-          role="presentation"
-          v-for="(item, key) of items"
-          :key="key"
-        >
+      <ul class="nav-wrapper">
+        <li class="md:mr-8 mr-6" v-for="(item, key) of items" :key="key">
           <nuxt-link
             :to="item.to"
             exact-active-class="active-navlink"
             class="item-link"
-            >{{ item.title }}</nuxt-link
           >
+            {{ item.title }}
+          </nuxt-link>
         </li>
         <div class="search">
           <ButtonComponent @click="handleSearch">
@@ -23,19 +19,23 @@
       </ul>
     </div>
     <div v-if="this.$route.name !== 'new'">
-      <div class="flex justify-between">
-        <div class="flex items-center gap-x-4">
+      <div class="flex justify-between items-center">
+        <div class="" v-if="this.$route.name != 'drafts'">
           <ButtonComponent @click="handleFilter" class="filter-button">
             <FilterIcon slot="prepend" />
             <span slot="default">Filter</span>
           </ButtonComponent>
+        </div>
+        <div v-else>
+          <h3 class="font-medium text-xl capitalize">Your drafts</h3>
+          <p class="text-gray-500">All pending drafts are here</p>
         </div>
         <ButtonComponent @click="to" class="button-style">
           <EditIcon slot="prepend" />
           <span slot="default" v-if="this.$route.name !== 'drafts'"
             >New Journal</span
           >
-          <span slot="default" v-else>New Draft</span>
+          <span slot="default" v-else>Create New Draft</span>
         </ButtonComponent>
       </div>
     </div>
@@ -66,6 +66,7 @@ export default {
         {
           title: 'All Journals',
           to: { name: 'journals' },
+          icon: FilterIcon,
         },
         {
           title: 'drafts',
