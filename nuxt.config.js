@@ -64,5 +64,8 @@ export default {
         component: resolve(__dirname, 'pages/error/error.vue'),
       })
     }
+  },
+  env: {
+    baseUrl: process.env.baseUrl,
   }
 }
