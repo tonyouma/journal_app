@@ -5,7 +5,7 @@
         <li class="md:mr-8 mr-6" v-for="(item, key) of items" :key="key">
           <nuxt-link
             :to="item.to"
-            exact-active-class="active-navlink"
+            active-class="active-navlink"
             class="item-link"
           >
             {{ item.title }}
