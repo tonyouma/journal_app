@@ -6,14 +6,20 @@
         >Create New Journal</ButtonComponent
       >
     </div>
+    <div v-if="loading">
+      <Loader />
+    </div>
     <div v-else>
       <JournalCard :journals="journals" />
     </div>
+    
   </div>
 </template>
 
 <script>
 import JournalCard from '~/components/Card/JournalCard.vue'
+import Loader from '~/components/Loader/index.vue'
+
 import { mapActions, mapGetters } from 'vuex'
 import ButtonComponent from '~/components/ButtonComponent/ButtonComponent.vue'
 
@@ -24,6 +30,7 @@ export default {
   components: {
     JournalCard,
     ButtonComponent,
+    Loader
   },
 
   computed: {

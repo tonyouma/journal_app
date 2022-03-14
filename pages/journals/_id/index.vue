@@ -1,22 +1,33 @@
 <template>
   <div>
-    <h1>{{ journal.title }}</h1>
-    <p>{{ journal.description }}</p>
-    <ButtonComponent @click="to" class="button-link"
-      >Previous Page</ButtonComponent
-    >
+    <div v-if="!loading">
+      <div class="flex justify-between mb-4">
+        <h1 class="font-medium capitalize">{{ journal.title }}</h1>
+        <p>{{ journal.createdAt }}</p>
+      </div>
+
+      <p>{{ journal.description }}</p>
+      <ButtonComponent @click="to" class="button-link"
+        >Previous Page</ButtonComponent
+      >
+    </div>
+    <div v-if="loading">
+      <Loader />
+    </div>
   </div>
 </template>
 
 <script>
 import ButtonComponent from '~/components/ButtonComponent/ButtonComponent.vue'
+import Loader from '~/components/Loader/index.vue'
+
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   layout(context) {
     return 'journal'
   },
-  components: { ButtonComponent },
+  components: { ButtonComponent, Loader },
 
   created() {
     this.id = this.$route.params.id

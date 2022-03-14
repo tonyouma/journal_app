@@ -4,7 +4,7 @@ const initialState = () => ({
   journals: [],
   loading: false,
   journal: {},
-  // drafts: [],
+  drafts: [],
 })
 
 const state = () => ({
@@ -37,6 +37,20 @@ const actions = {
         console.log('error', err)
         commit('SET_LOADING', false)
       })
+  },
+
+  async fetchDrafts({ commit }) {
+    commit('SET_LOADING', true)
+
+    await axios.get('/drafts')
+      .then(res => {
+        const drafts = res.data
+        commit('SET_DRAFTS', drafts)
+        commit('SET_LOADING', false)
+      }).catch(err => {
+        console.log('error', err)
+        commit('SET_LOADING', false)
+      })
   }
 }
 
@@ -44,7 +58,7 @@ const getters = {
   journals: state => state.journals,
   journal: state => state.journal,
   loading: state => state.loading,
-  selectedJournal: state => state.selectedJournal
+  drafts: state => state.drafts,
 }
 
 const mutations = {
@@ -56,8 +70,12 @@ const mutations = {
   },
   SET_LOADING: (state, loading) => {
     state.loading = loading
-  }
+  },
 
+  // Drafts
+  SET_DRAFTS: (state, drafts) => {
+    state.drafts = drafts
+  }
 }
 
 export default {
