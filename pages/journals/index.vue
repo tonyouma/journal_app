@@ -1,18 +1,17 @@
 <template>
   <div>
-    <div v-if="!journals.length" class="content-wrapper">
+    <div v-if="loading">
+      <Loader />
+    </div>
+    <div v-else-if="!journals.length" class="content-wrapper">
       <p class="">No Journals Available</p>
       <ButtonComponent to="/new" class="link-text"
         >Create New Journal</ButtonComponent
       >
     </div>
-    <div v-if="loading">
-      <Loader />
-    </div>
     <div v-else>
       <JournalCard :journals="journals" />
     </div>
-    
   </div>
 </template>
 
@@ -30,7 +29,7 @@ export default {
   components: {
     JournalCard,
     ButtonComponent,
-    Loader
+    Loader,
   },
 
   computed: {
