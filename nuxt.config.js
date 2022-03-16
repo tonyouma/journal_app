@@ -38,7 +38,15 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
+
+    //
+    '@nuxtjs/toast'
   ],
+
+  toast: {
+    position: 'top-center',
+    duration: 1500
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
