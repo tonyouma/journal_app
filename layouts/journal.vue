@@ -11,10 +11,19 @@
             {{ item.title }}
           </nuxt-link>
         </li>
-        <div class="search">
-          <ButtonComponent @click="handleSearch">
-            <SearchIcon slot="default" />
-          </ButtonComponent>
+        <div class="ml-auto self-center">
+          <div
+            v-if="this.$route.name == 'new'"
+            class="flex gap-x-2 items-center"
+          >
+            <Cloud />
+            <p>Saved</p>
+          </div>
+          <div v-else class="search">
+            <ButtonComponent @click="handleSearch">
+              <SearchIcon slot="default" />
+            </ButtonComponent>
+          </div>
         </div>
       </ul>
     </div>
@@ -51,6 +60,7 @@ import ButtonComponent from '~/components/ButtonComponent/ButtonComponent.vue'
 import EditIcon from '~/components/Icons/Edit/EditIcon.vue'
 import FilterIcon from '../components/Icons/Filter/FilterIcon.vue'
 import SearchIcon from '../components/Icons/Search/SearchIcon.vue'
+import Cloud from '~/components/Icons/Cloud/index.vue'
 
 export default {
   components: {
@@ -59,6 +69,7 @@ export default {
     FilterIcon,
     SearchIcon,
     FilterIcon,
+    Cloud,
   },
   data() {
     return {
@@ -105,7 +116,7 @@ export default {
   @apply bg-blue-50 text-blue-900 font-medium rounded my-5 py-2 px-3;
 }
 .search {
-  @apply bg-blue-50 ml-auto self-center p-2 rounded text-blue-600;
+  @apply bg-blue-50 p-2 rounded text-blue-600;
 }
 .filter-button {
   @apply border border-gray-200 py-1 rounded px-3 text-gray-400;
