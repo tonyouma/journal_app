@@ -1,4 +1,4 @@
-import axios from "~/plugins/axios"
+import axios from '~/plugins/axios'
 
 const initialState = () => ({
   journals: [],
@@ -17,12 +17,14 @@ const actions = {
   async fetchJournals({ commit }) {
     commit('SET_LOADING', true)
 
-    await axios.get('/')
-      .then(res => {
+    await axios
+      .get('/')
+      .then((res) => {
         const journals = res.data
         commit('SET_JOURNALS', journals)
         commit('SET_LOADING', false)
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.log('error', err)
         commit('SET_LOADING', false)
       })
@@ -32,11 +34,13 @@ const actions = {
   async fetchJournal({ commit }, id) {
     commit('SET_LOADING', true)
 
-    await axios.get(`/${id}`)
-      .then(res => {
+    await axios
+      .get(`/${id}`)
+      .then((res) => {
         commit('SET_JOURNAL', res.data)
         commit('SET_LOADING', false)
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.log('error', err)
         commit('SET_LOADING', false)
       })
@@ -46,12 +50,14 @@ const actions = {
   async fetchDrafts({ commit }) {
     commit('SET_LOADING', true)
 
-    await axios.get('/drafts')
-      .then(res => {
+    await axios
+      .get('/drafts')
+      .then((res) => {
         const drafts = res.data
         commit('SET_DRAFTS', drafts)
         commit('SET_LOADING', false)
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.log('error', err)
         commit('SET_LOADING', false)
       })
@@ -60,10 +66,12 @@ const actions = {
   // Create a new journal
 
   async createJournal({ commit }, journal) {
-    await axios.post('/', journal)
-      .then(res => {
+    await axios
+      .post('/', journal)
+      .then((res) => {
         commit('CREATE_JOURNAL', res.data)
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.log('error', err)
       })
   },
@@ -71,10 +79,12 @@ const actions = {
   // Update a journal
 
   async updateJournal({ commit }, journal) {
-    await axios.put(`/${journal.id}`, journal)
-      .then(res => {
+    await axios
+      .put(`/${journal.id}`, journal)
+      .then((res) => {
         commit('UPDATE_JOURNAL', res.data)
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.log('error', err)
       })
   },
@@ -82,23 +92,24 @@ const actions = {
   // Delete a journal
 
   async deleteJournal({ commit }, id) {
-    await axios.delete(`/${id}`)
-      .then(res => {
+    await axios
+      .delete(`/${id}`)
+      .then((res) => {
         commit('DELETE_JOURNAL', res.data.id)
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.log('error', err)
       })
-  }
+  },
 }
 
 const getters = {
-  journals: state => state.journals,
-  journal: state => state.journal,
-  loading: state => state.loading,
-  drafts: state => state.drafts,
+  journals: (state) => state.journals,
+  journal: (state) => state.journal,
+  loading: (state) => state.loading,
+  drafts: (state) => state.drafts,
 
-  newJournal: state => state.newJournal,
-
+  newJournal: (state) => state.newJournal,
 }
 
 const mutations = {
@@ -122,13 +133,13 @@ const mutations = {
   },
 
   DELETE_JOURNAL: (state, journal) => {
-    state.journals.filter(j => j.id !== journal.id)
+    state.journals.filter((j) => j.id !== journal.id)
   },
 
   // Drafts
   SET_DRAFTS: (state, drafts) => {
     state.drafts = drafts
-  }
+  },
 }
 
 export default {
@@ -136,5 +147,5 @@ export default {
   state,
   getters,
   actions,
-  mutations
+  mutations,
 }

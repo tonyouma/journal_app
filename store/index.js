@@ -9,10 +9,10 @@ Vue.use(VueX)
  * create a store and export it is a default method
  * that returns the VueX store instance   */
 
-
-export default () => new VueX.Store({
-  modules: {
-    journals
-  },
-  plugins: debug ? [createLogger()] : []
-})
+export default () =>
+  new VueX.Store({
+    modules: {
+      journals,
+    },
+    plugins: debug ? [createLogger()] : [],
+  })

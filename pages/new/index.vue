@@ -18,11 +18,14 @@
           class="w-full resize-none overflow-hidden p-4 mt-4 bg-gray-50 focus:outline-none text-md rounded"
           style="height: 124px !important"
         ></textarea>
+        <!-- <Editor /> -->
         <!-- <Editor v-model="journal.description" /> -->
       </div>
-      <ButtonComponent type="submit" class="button-style"
-        >Publish</ButtonComponent
-      >
+      <div>
+        <ButtonComponent type="submit" class="button-style"
+          >Publish</ButtonComponent
+        >
+      </div>
     </form>
   </div>
 </template>
@@ -30,6 +33,7 @@
 <script>
 import ButtonComponent from '~/components/ButtonComponent/ButtonComponent.vue'
 import { mapActions, mapGetters } from 'vuex'
+// import Editor from '~/components/Editor/index.vue'
 // import Editor from '~/components/Editor/Editor.vue'
 
 export default {
