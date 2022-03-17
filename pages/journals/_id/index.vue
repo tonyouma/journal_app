@@ -2,18 +2,25 @@
   <div>
     <div v-if="!loading">
       <div class="flex justify-between mb-4">
-        <h4>{{ journal.id }}</h4>
         <h1 class="font-medium capitalize">{{ journal.title }}</h1>
         <p>{{ journal.createdAt }}</p>
       </div>
 
       <p>{{ journal.description }}</p>
-      <ButtonComponent @click="to" class="button-link"
-        >Previous Page</ButtonComponent
-      >
-      <ButtonComponent @click="deleteJournal(journal.id)"
-        ><FilterIcon
-      /></ButtonComponent>
+
+      <div class="flex justify-between items-center mt-6">
+        <ButtonComponent @click="to" class="button-link"
+          >Previous Page</ButtonComponent
+        >
+        <div class="flex gap-x-3">
+          <ButtonComponent class="button-link underline">
+            <span slot="default">Edit</span>
+          </ButtonComponent>
+          <ButtonComponent @click="deleteJournalEntry(journal.id)">
+            <Trash />
+          </ButtonComponent>
+        </div>
+      </div>
     </div>
     <div v-if="loading">
       <Loader />
@@ -27,26 +34,26 @@ import Loader from '~/components/Loader/index.vue'
 
 import { mapActions, mapGetters } from 'vuex'
 import FilterIcon from '~/components/Icons/Filter/FilterIcon.vue'
+import Trash from '~/components/Icons/Trash/index.vue'
 
 export default {
   layout(context) {
     return 'journal'
   },
-  components: { ButtonComponent, Loader, FilterIcon },
+  components: { ButtonComponent, Loader, FilterIcon, Trash },
 
   created() {
     this.id = this.$route.params.id
     this.fetchJournal(this.id)
   },
   computed: {
-    ...mapGetters(['journal', 'loading']),
+    ...mapGetters(['journal', 'loading', 'isDraft']),
   },
   methods: {
     ...mapActions(['fetchJournal', 'deleteJournal']),
-    deleteJournal(id) {
-      // console.log('This function is not yet implemented')
+    deleteJournalEntry(id) {
       this.deleteJournal(id)
-      // this.$router.push('/journals')
+      this.$router.push('/journals')
     },
     // Go to previous page
     to() {
@@ -58,6 +65,6 @@ export default {
 
 <style lang="postcss" scoped>
 .button-link {
-  @apply py-2 text-blue-900 font-medium text-right mt-8;
+  @apply py-2 text-blue-900 font-medium;
 }
 </style>

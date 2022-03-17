@@ -5,7 +5,7 @@ const initialState = () => ({
   loading: false,
   journal: {},
   drafts: [],
-  newJournal: null
+  newJournal: {},
 })
 
 const state = () => ({
@@ -13,6 +13,7 @@ const state = () => ({
 })
 
 const actions = {
+  // Get all journals
   async fetchJournals({ commit }) {
     commit('SET_LOADING', true)
 
@@ -27,6 +28,7 @@ const actions = {
       })
   },
 
+  // Get a journal
   async fetchJournal({ commit }, id) {
     commit('SET_LOADING', true)
 
@@ -40,6 +42,7 @@ const actions = {
       })
   },
 
+  // Get all drafts
   async fetchDrafts({ commit }) {
     commit('SET_LOADING', true)
 
@@ -54,6 +57,8 @@ const actions = {
       })
   },
 
+  // Create a new journal
+
   async createJournal({ commit }, journal) {
     await axios.post('/', journal)
       .then(res => {
@@ -63,14 +68,27 @@ const actions = {
       })
   },
 
-  // async deleteJournal({ commit }, id) {
-  //   await axios.delete(`/${id}`)
-  //     .then(res => {
-  //       commit('DELETE_JOURNAL', res.data.id)
-  //     }).catch(err => {
-  //       console.log('error', err)
-  //     })
-  // }
+  // Update a journal
+
+  async updateJournal({ commit }, journal) {
+    await axios.put(`/${journal.id}`, journal)
+      .then(res => {
+        commit('UPDATE_JOURNAL', res.data)
+      }).catch(err => {
+        console.log('error', err)
+      })
+  },
+
+  // Delete a journal
+
+  async deleteJournal({ commit }, id) {
+    await axios.delete(`/${id}`)
+      .then(res => {
+        commit('DELETE_JOURNAL', res.data.id)
+      }).catch(err => {
+        console.log('error', err)
+      })
+  }
 }
 
 const getters = {
@@ -79,7 +97,8 @@ const getters = {
   loading: state => state.loading,
   drafts: state => state.drafts,
 
-  newJournal: state => state.newJournal
+  newJournal: state => state.newJournal,
+
 }
 
 const mutations = {
@@ -94,13 +113,17 @@ const mutations = {
   },
 
   CREATE_JOURNAL: (state, journal) => {
-    state.journals.unshift(journal)
+    state.journals.push(journal)
     state.newJournal = journal
   },
 
-  // DELETE_JOURNAL: (state, journal) => {
-  //   state.journals = state.journals.filter(j => j.id !== journal.id)
-  // },
+  UPDATE_JOURNAL: (state, journal) => {
+    state.journals.push(journal)
+  },
+
+  DELETE_JOURNAL: (state, journal) => {
+    state.journals.filter(j => j.id !== journal.id)
+  },
 
   // Drafts
   SET_DRAFTS: (state, drafts) => {
