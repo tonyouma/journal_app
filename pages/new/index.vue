@@ -4,22 +4,21 @@
     <form @submit.stop.prevent="onSubmit">
       <div class="flex flex-col">
         <input
-          placeholder="Journal Title..."
+          placeholder="Title..."
           class="textAreaStyles"
           type="text"
           id="title"
           v-model="journal.title"
           autofocus
         />
-        <textarea
+        <!-- <textarea
           v-model="journal.description"
           id="description"
           placeholder="Share your thoughts..."
           class="w-full resize-none overflow-hidden p-4 mt-4 bg-gray-50 focus:outline-none text-md rounded"
           style="height: 124px !important"
-        ></textarea>
-        <!-- <Editor /> -->
-        <!-- <Editor v-model="journal.description" /> -->
+        ></textarea> -->
+        <Editor v-model="journal.description" />
       </div>
       <div>
         <ButtonComponent type="submit" class="button-style"
@@ -33,14 +32,13 @@
 <script>
 import ButtonComponent from '~/components/ButtonComponent/ButtonComponent.vue'
 import { mapActions, mapGetters } from 'vuex'
-// import Editor from '~/components/Editor/index.vue'
-// import Editor from '~/components/Editor/Editor.vue'
+import Editor from '~/components/Editor/index.vue'
 
 export default {
   layout(context) {
     return 'journal'
   },
-  components: { ButtonComponent },
+  components: { ButtonComponent, Editor },
   data() {
     return {
       journal: {},
@@ -56,8 +54,12 @@ export default {
         description: description,
         createdAt: new Date().toLocaleTimeString(),
       })
-      // console.log(this.journal)
-      // debugger
+      debugger
+      console.log(this.journal)
+    },
+    handleData: function (e) {
+      console.log(e)
+      this.editor = e
     },
   },
 
@@ -74,6 +76,6 @@ export default {
 </script>
 <style lang="postcss">
 .textAreaStyles {
-  @apply w-full px-5 focus:outline-none focus:border-blue-200 mt-2  rounded;
+  @apply w-full px-4 focus:outline-none focus:border-blue-200 mt-2 font-medium rounded;
 }
 </style>

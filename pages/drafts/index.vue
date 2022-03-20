@@ -13,9 +13,11 @@
 </template>
 
 <script>
+import JournalCard from '~/components/Card/JournalCard.vue'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  components: { JournalCard },
   layout(context) {
     return 'journal'
   },

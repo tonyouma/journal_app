@@ -2,7 +2,7 @@
   <div>
     <div v-for="journal of journals" :key="journal.id" class="card-styles">
       <h1 class="title">{{ journal.title }}</h1>
-      <p class="py-2 text-gray-600">{{ journal.description }}</p>
+      <div class="py-2" v-html="journal.description"></div>
       <div class="bottom-content">
         <p class="timestamp">{{ journal.createdAt }}</p>
         <div class="flex items-center gap-x-4">

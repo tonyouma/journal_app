@@ -6,7 +6,7 @@
         <p>{{ journal.createdAt }}</p>
       </div>
 
-      <p>{{ journal.description }}</p>
+      <p v-html="journal.description"></p>
 
       <div class="flex justify-between items-center mt-6">
         <ButtonComponent @click="to" class="button-link"

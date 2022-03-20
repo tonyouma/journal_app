@@ -18,7 +18,7 @@ const actions = {
     commit('SET_LOADING', true)
 
     await axios
-      .get('/')
+      .get('journals/')
       .then((res) => {
         const journals = res.data
         commit('SET_JOURNALS', journals)
@@ -35,7 +35,7 @@ const actions = {
     commit('SET_LOADING', true)
 
     await axios
-      .get(`/${id}`)
+      .get(`journals/${id}`)
       .then((res) => {
         commit('SET_JOURNAL', res.data)
         commit('SET_LOADING', false)
@@ -51,7 +51,7 @@ const actions = {
     commit('SET_LOADING', true)
 
     await axios
-      .get('/drafts')
+      .get('drafts/')
       .then((res) => {
         const drafts = res.data
         commit('SET_DRAFTS', drafts)
@@ -67,7 +67,7 @@ const actions = {
 
   async createJournal({ commit }, journal) {
     await axios
-      .post('/', journal)
+      .post('journals/', journal)
       .then((res) => {
         commit('CREATE_JOURNAL', res.data)
       })
@@ -80,7 +80,7 @@ const actions = {
 
   async updateJournal({ commit }, journal) {
     await axios
-      .put(`/${journal.id}`, journal)
+      .put(`journals/${journal.id}`, journal)
       .then((res) => {
         commit('UPDATE_JOURNAL', res.data)
       })
@@ -93,7 +93,7 @@ const actions = {
 
   async deleteJournal({ commit }, id) {
     await axios
-      .delete(`/${id}`)
+      .delete(`journals/${id}`)
       .then((res) => {
         commit('DELETE_JOURNAL', res.data.id)
       })
