@@ -27,7 +27,7 @@
   "devDependencies": {
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
-    "@nuxtjs/tailwindcss": "^5.0.0",
+    "@nuxtjs/tailwindcss": "^5.0.2",
     "@nuxtjs/toast": "^3.3.1",
     "eslint-config-prettier": "^8.3.0",
     "husky": "^7.0.4",
