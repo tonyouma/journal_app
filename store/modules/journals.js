@@ -80,7 +80,7 @@ const actions = {
 
   async updateJournal({ commit }, journal) {
     await axios
-      .put(`journals/${journal.id}`, journal)
+      .post(`journals/${journal.id}?_method=PUT`, journal)
       .then((res) => {
         commit('UPDATE_JOURNAL', res.data)
       })
@@ -101,6 +101,10 @@ const actions = {
         console.log('error', err)
       })
   },
+
+  updateJournalInput({ commit }, e) {
+    commit('UPDATE_JOURNAL_INPUT', e)
+  }
 }
 
 const getters = {
@@ -129,7 +133,8 @@ const mutations = {
   },
 
   UPDATE_JOURNAL: (state, journal) => {
-    state.journals.push(journal)
+    state.journals.unshift(journal)
+    state.newJournal = journal
   },
 
   DELETE_JOURNAL: (state, journal) => {
@@ -140,6 +145,12 @@ const mutations = {
   SET_DRAFTS: (state, drafts) => {
     state.drafts = drafts
   },
+
+  UPDATE_JOURNAL_INPUT: (state, e) => {
+    let journal = state.journal
+    journal[e.target.name] = e.target.value
+    state.journal = journal
+  }
 }
 
 export default {

@@ -39,7 +39,7 @@
           <h3 class="font-medium text-xl capitalize">Your drafts</h3>
           <p class="text-gray-500">All pending drafts are here</p>
         </div>
-        <ButtonComponent @click="to" class="button-style">
+        <ButtonComponent to="/journals/new" class="button-style">
           <EditIcon slot="prepend" />
           <span slot="default" v-if="this.$route.name !== 'drafts'"
             >New Journal</span
@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     to() {
-      this.$router.push({ name: 'new' })
+      // this.$router.push({ name: 'new' })
     },
     handleFilter() {
       //
@@ -113,7 +113,7 @@ export default {
   color: #1e3a8a;
 }
 .button-style {
-  @apply bg-blue-50 text-blue-900 font-medium rounded my-5 py-2 px-3;
+  @apply bg-blue-50 text-blue-900 font-medium rounded my-5 py-2 px-3 cursor-pointer;
 }
 .search {
   @apply bg-blue-50 p-2 rounded text-blue-600;

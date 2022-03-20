@@ -13,7 +13,7 @@
           >Previous Page</ButtonComponent
         >
         <div class="flex gap-x-3">
-          <ButtonComponent class="button-link underline">
+          <ButtonComponent to="edit" class="button-link underline">
             <span slot="default">Edit</span>
           </ButtonComponent>
           <ButtonComponent @click="deleteJournalEntry(journal.id)">
@@ -65,6 +65,6 @@ export default {
 
 <style lang="postcss" scoped>
 .button-link {
-  @apply py-2 text-blue-900 font-medium;
+  @apply py-2 text-blue-900 font-medium cursor-pointer;
 }
 </style>
