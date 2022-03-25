@@ -13,7 +13,9 @@
         </li>
         <div class="ml-auto self-center">
           <div
-            v-if="this.$route.name == 'new'"
+            v-if="
+              this.$route.name !== 'journals' && this.$route.name !== 'drafts'
+            "
             class="flex gap-x-2 items-center"
           >
             <Cloud />
@@ -27,9 +29,14 @@
         </div>
       </ul>
     </div>
-    <div v-if="this.$route.name !== 'new'">
-      <div class="flex justify-between items-center">
-        <div class="" v-if="this.$route.name != 'drafts'">
+    <div>
+      <div
+        v-show="
+          this.$route.name === 'journals' || this.$route.name === 'drafts'
+        "
+        class="flex justify-between items-center"
+      >
+        <div v-if="this.$route.name != 'drafts'">
           <ButtonComponent @click="handleFilter" class="filter-button">
             <FilterIcon slot="prepend" />
             <span slot="default">Filter</span>
