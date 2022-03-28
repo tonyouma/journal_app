@@ -6,6 +6,7 @@ const initialState = () => ({
   journal: {},
   drafts: [],
   newJournal: {},
+  updatedJournal: {}
 })
 
 const state = () => ({
@@ -80,7 +81,7 @@ const actions = {
 
   async updateJournal({ commit }, journal) {
     await axios
-      .post(`journals/${journal.id}?_method=PUT`, journal)
+      .put(`journals/${journal.id}`, journal)
       .then((res) => {
         commit('UPDATE_JOURNAL', res.data)
       })
@@ -114,6 +115,7 @@ const getters = {
   drafts: (state) => state.drafts,
 
   newJournal: (state) => state.newJournal,
+  updatedJournal: (state) => state.updatedJournal
 }
 
 const mutations = {
@@ -132,9 +134,16 @@ const mutations = {
     state.newJournal = journal
   },
 
-  UPDATE_JOURNAL: (state, journal) => {
-    state.journals.unshift(journal)
-    state.newJournal = journal
+  UPDATE_JOURNAL: (state, updatedJournal) => {
+    let journals = state.journals
+
+    const index = journals.findIndex(j => j.id === updatedJournal.id)
+    if (index !== -1) {
+      journals.splice(index, 1, updatedJournal)
+    }
+    state.journals = state.journal
+    // state.journals.push(journal)
+    // state.updatedJournal = journal
   },
 
   DELETE_JOURNAL: (state, journal) => {

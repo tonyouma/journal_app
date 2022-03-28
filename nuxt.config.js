@@ -85,5 +85,7 @@ export default {
   },
   env: {
     baseUrl: process.env.baseUrl,
-  }
+  },
+
+  middleware: ["auth"]
 }

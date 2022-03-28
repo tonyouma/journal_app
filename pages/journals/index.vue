@@ -26,6 +26,7 @@ export default {
   layout(context) {
     return 'journal'
   },
+  // middleware: 'auth',
   components: {
     JournalCard,
     ButtonComponent,

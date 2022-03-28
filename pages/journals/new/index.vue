@@ -52,10 +52,15 @@ export default {
       this.createJournal({
         title: title,
         description: description,
-        createdAt: new Date().toLocaleTimeString(),
+        createdAt: new Date().toLocaleDateString('en-US', {
+          timeZone: 'UTC',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        }),
       })
-      debugger
-      console.log(this.journal)
+      // debugger
+      // console.log(this.journal)
     },
     handleData: function (e) {
       console.log(e)

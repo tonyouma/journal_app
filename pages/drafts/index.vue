@@ -2,7 +2,7 @@
   <div>
     <div class="content-wrapper" v-if="!drafts.length">
       <p class="">You have no drafts yet</p>
-      <ButtonComponent to="/new" class="link-text"
+      <ButtonComponent to="journals/new" class="link-text"
         >Start New Draft</ButtonComponent
       >
     </div>

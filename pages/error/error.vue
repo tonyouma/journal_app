@@ -2,7 +2,7 @@
   <div class="relative h-screen items-center flex justify-center flex-col">
     <div class="flex items-center">
       <div
-        class="border-r border-gray-600 px-6 text-gray-600 text-3xl font-medium"
+        class="border-r border-gray-200 px-6 text-gray-600 text-3xl font-medium"
       >
         404
       </div>

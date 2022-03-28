@@ -1,21 +1,24 @@
 <template>
   <div>
     <div v-if="!loading">
-      <div class="flex justify-between mb-4">
-        <h1 class="font-medium capitalize">{{ journal.title }}</h1>
-        <p>{{ journal.createdAt }}</p>
+      <div class="my-4">
+        <h1 class="font-medium text-3xl capitalize">{{ journal.title }}</h1>
+        <p class="my-3 text-gray-400 text-sm">{{ journal.createdAt }}</p>
       </div>
 
-      <p v-html="journal.description"></p>
+      <p v-html="journal.description" class="text-gray-700 text-xl"></p>
 
       <div class="flex justify-between items-center mt-6">
         <ButtonComponent @click="to" class="button-link"
           >Previous Page</ButtonComponent
         >
         <div class="flex gap-x-3">
-          <ButtonComponent to="edit" class="button-link underline">
+          <nuxt-link
+            :to="{ name: 'journals-edit', params: { id: journal.id } }"
+            class="button-link underline"
+          >
             <span slot="default">Edit</span>
-          </ButtonComponent>
+          </nuxt-link>
           <ButtonComponent @click="deleteJournalEntry(journal.id)">
             <Trash />
           </ButtonComponent>
@@ -41,6 +44,7 @@ export default {
     return 'journal'
   },
   components: { ButtonComponent, Loader, FilterIcon, Trash },
+  transitions: 'page-slide',
 
   created() {
     this.id = this.$route.params.id
@@ -66,5 +70,9 @@ export default {
 <style lang="postcss" scoped>
 .button-link {
   @apply py-2 text-blue-900 font-medium cursor-pointer;
+}
+
+.page-slide-enter-active {
+  transition: all 0.35s cubic-bezier(0, 0.25, 0, 0.75);
 }
 </style>
